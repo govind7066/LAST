@@ -1,0 +1,15 @@
+CyberOps Workstation VM
+open terminal and type 
+cd /home/analyst/lab.support.files/
+ls –l
+awk'BEGIN {FS=OFS="|"} {$3=strftime("%c",$3)} {print}' applicationX_in_epoch.log
+nano applicationX_in_epoch.log
+cat applicationX_in_epoch.log
+awk   'BEGIN   {FS=OFS="|"}   {$3=strftime("%c",$3)}{print}' applicationX_in_epoch.log > applicationX_in_human.log
+cat applicationX_in_human.log
+
+open terminal and type
+cd /home/analyst/lab.support.files/
+cat apache_in_epoch.log
+awk 'BEGIN {FS=OFS=" "} {$4=strftime("%c",$4)}{print}' apache_in_epoch.log
+awk'BEGIN{FS=OFS="	"}{gsub(/[|]/,"",$4)}{print}{$4=strftime("%c",$4)}{print}' apache_in_epoch.log
