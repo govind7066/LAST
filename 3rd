@@ -1,0 +1,11 @@
+: Open terminal and write this command
+cd ./lab.support.files/pcaps/ 
+ls -l
+wireshark-gtknimda.download.pcap
+Check HTTP and check host and full URL to download the malware file
+Right click on TCP which shows top on the list. Then click on Follow TCP Stream.
+Check the original file name in the Follow TCP Stream window
+Find exe file from HTTP>click file> select export obj> Select exe File >Save as > Select Folder> Save
+In the HTTP object list window, select the W32.Nimda.Amm.exe file and click Save As at the bottom of the screen.
+command prompt “ls -l” 
+file W32.Nimda.Amm.exe
