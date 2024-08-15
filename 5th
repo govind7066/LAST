@@ -1,0 +1,13 @@
+sudosystemctl status rsyslog
+sudo apt-get update
+sudo apt-get install rsyslog
+sudo nano /etc/rsyslog.conf
+Uncomment above four lines that enable udp and tcp port binding 
+$templateremote-incoming- logs,"/var/log/%HOSTNAME%/%PROGRAMNAME%.log"
+*.* ?remote-incoming-logs
+Save and restart rsyslog service
+sudosystemctl restart rsyslog
+ss -tunelp | grep 514
+sudoufw allow 514/tcp
+sudoufw allow 514/udp
+sudorsyslogd -N1 -f /etc/rsyslog.con
