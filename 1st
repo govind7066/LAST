@@ -1,0 +1,9 @@
+open terminal type- 
+cd ./lab.support.files/ 
+cat letter_to_grandma.txt
+openssl aes-256-cbc -in letter_to_grandma.txt -out message.enc
+cat message.enc
+openssl aes-256-cbc -a -in letter_to_grandma.txt -out message.enc
+cat message.enc
+openssl aes-256-cbc –a -d -in message.enc -out decrypted_letter.txt
+cat decrypted_letter.txt
